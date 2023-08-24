@@ -44,8 +44,7 @@ func main() {
 	fmt.Println("map1=", map1)
 
 	// 繰り返しと条件分岐
-	for i := 1; i < 10; i++ {
-		fmt.Print(i, "\n")
+	for i := 1; i < 13; i++ {
 		if i%6 == 0 {
 			fmt.Print(i, "は6の倍数です。\n")
 		} else if i%3 == 0 {
@@ -56,4 +55,20 @@ func main() {
 			fmt.Print(i, "は6の倍数でも、2の倍数でも、3の倍数でもありません。\n")
 		}
 	}
+
+	for i := 0; i <= 10; i++ {
+		fmt.Print(i, "\n")
+		switch i {
+		case 1:
+			fmt.Print(1, "\n")
+		case 2:
+			fmt.Print(22, "\n")
+		case 5:
+			fmt.Print(55555, "\n")
+		case 8:
+			goto eight
+		}
+	}
+	eight :
+		fmt.Print("it is eight")
 }
