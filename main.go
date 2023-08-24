@@ -5,6 +5,24 @@ import (
 	"strconv" //文字列型⇔数値型
 )
 
+func add(x int, y int) int {
+	return x + y
+}
+
+func addMinus(x int, y int) (int, int) {
+	return x + y, x - y
+}
+
+func allSum(x int, y ... int) int {
+	sum := x
+	for _, num := range y {
+		sum = sum + num
+		fmt.Print(sum, " ")
+	}
+	fmt.Print("\n")
+	return sum
+}
+
 func main() {
 	fmt.Println("GO言語を練習しよう")
 
@@ -70,5 +88,13 @@ func main() {
 		}
 	}
 	eight :
-		fmt.Print("it is eight")
+		fmt.Print("it is eight \n")
+
+	fmt.Print(add(2, 3), "\n")
+
+	// addMinusの複数の返り値の内、2番目のものだけをminusNumberに代入する
+	_, minusNumber := addMinus(2, 3)
+	fmt.Print(minusNumber, "\n")
+
+	fmt.Print(allSum(1, 2, 3, 4, 5), "\n")
 }
