@@ -5,6 +5,11 @@ import (
 	"strconv" //文字列型⇔数値型
 )
 
+type Person struct {
+	name string
+	age int
+}
+
 func add(x int, y int) int {
 	return x + y
 }
@@ -21,6 +26,15 @@ func allSum(x int, y ... int) int {
 	}
 	fmt.Print("\n")
 	return sum
+}
+
+func (p *Person) SetPerson(name string, age int){
+	p.name = name
+	p.age = age
+}
+
+func (p *Person) GetPerson () (string, int){
+	return p.name, p.age
 }
 
 func main() {
@@ -97,4 +111,14 @@ func main() {
 	fmt.Print(minusNumber, "\n")
 
 	fmt.Print(allSum(1, 2, 3, 4, 5), "\n")
+
+	var p1 Person
+	p1.SetPerson("Gima", 23)
+	name, age := p1.GetPerson()
+	fmt.Printf("%s(%d)\n", name, age)
+	
+	// 下記のような利用も可能
+	p2 := Person{name: "Riko", age: 23}
+	name, age = p2.GetPerson()
+	fmt.Printf("%s(%d)\n", name, age)
 }
