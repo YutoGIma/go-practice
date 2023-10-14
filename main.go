@@ -10,6 +10,15 @@ type Person struct {
 	age int
 }
 
+type Team struct {
+	name string
+	size int
+}
+
+type Printable interface {
+	GetData() (string, int)
+}
+
 func add(x int, y int) int {
 	return x + y
 }
@@ -33,8 +42,25 @@ func (p *Person) SetPerson(name string, age int){
 	p.age = age
 }
 
-func (p *Person) GetPerson () (string, int){
+func (p Person) GetData() (string, int){
 	return p.name, p.age
+}
+
+func (t *Team) SetTeam(name string, size int){
+	t.name = name
+	t.size = size
+}
+
+func (t Team) GetData() (string, int){
+	return t.name, t.size
+}
+
+func PrintOut(p Printable) {
+	fmt.Println(p.GetData())
+}
+
+func strToInt(a interface {}){
+	fmt.Printf("%d\n", a.(int))
 }
 
 func main() {
@@ -114,11 +140,19 @@ func main() {
 
 	var p1 Person
 	p1.SetPerson("Gima", 23)
-	name, age := p1.GetPerson()
+	name, age := p1.GetData()
 	fmt.Printf("%s(%d)\n", name, age)
 	
 	// 下記のような利用も可能
 	p2 := Person{name: "Riko", age: 23}
-	name, age = p2.GetPerson()
+	name, age = p2.GetData()
 	fmt.Printf("%s(%d)\n", name, age)
+
+	strToInt(12)
+	// strToInt("da")
+
+	p3 := Person{name: "佐藤", age: 28}
+	t1 := Team{name: "砂糖チーム", size: 12}
+	PrintOut(p3)
+	PrintOut(t1)
 }
